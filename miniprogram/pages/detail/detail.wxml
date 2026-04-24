@@ -1,0 +1,51 @@
+<view class="page">
+  <view class="content-card" wx:if="{{content.id}}">
+    <view class="content-header">
+      <view class="tags">
+        <text class="tag tag-primary">{{content.category_name}}</text>
+      </view>
+      <view class="stats">
+        <view class="stat-item">
+          <text class="iconfont icon-view"></text>
+          <text class="stat-text">{{content.view_count}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="iconfont {{content.is_favorite ? 'icon-heart-fill' : 'icon-heart'}}"></text>
+          <text class="stat-text">{{content.favorite_count}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="content-body">
+      <view class="content-title" wx:if="{{content.title}}">{{content.title}}</view>
+      <view class="content-text">{{content.content}}</view>
+      <view class="content-author" wx:if="{{content.author}}">—— {{content.author}}</view>
+    </view>
+
+    <view class="content-footer">
+      <view class="publish-info">
+        <text class="publish-label">发布时间：</text>
+        <text class="publish-time">{{formatTime(content.created_at)}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-text">内容不存在或已被删除</text>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="bar-item" bindtap="toggleFavorite">
+      <text class="iconfont {{content.is_favorite ? 'icon-heart-fill' : 'icon-heart'}} {{content.is_favorite ? 'active' : ''}}"></text>
+      <text class="bar-text">{{content.is_favorite ? '已收藏' : '收藏'}}</text>
+    </view>
+    <view class="bar-item" bindtap="shareContent">
+      <text class="iconfont icon-share"></text>
+      <text class="bar-text">分享</text>
+    </view>
+    <button class="bar-item copy-btn" open-type="share">
+      <text class="iconfont icon-copy"></text>
+      <text class="bar-text">复制</text>
+    </button>
+  </view>
+</view>

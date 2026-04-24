@@ -1,0 +1,57 @@
+<view class="page">
+  <view class="summary-card">
+    <view class="summary-info">
+      <text class="summary-label">当前积分</text>
+      <text class="summary-value">{{userInfo ? userInfo.points : 0}}</text>
+    </view>
+    <view class="summary-stats">
+      <view class="stat-item">
+        <text class="stat-value">{{earnedPoints}}</text>
+        <text class="stat-label">累计获得</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{usedPoints}}</text>
+        <text class="stat-label">累计消耗</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="list-section">
+    <view class="section-header">
+      <text class="section-title">积分明细</text>
+    </view>
+
+    <view class="log-list" wx:if="{{logList.length > 0}}">
+      <view class="log-item" wx:for="{{logList}}" wx:key="id">
+        <view class="log-left">
+          <view class="log-icon {{item.points > 0 ? 'plus' : 'minus'}}">
+            <text class="iconfont {{item.points > 0 ? 'icon-plus' : 'icon-minus'}}"></text>
+          </view>
+          <view class="log-info">
+            <text class="log-title">{{item.type_name}}</text>
+            <text class="log-time">{{formatTime(item.created_at)}}</text>
+          </view>
+        </view>
+        <view class="log-right">
+          <text class="points-value {{item.points > 0 ? 'plus' : 'minus'}}">
+            {{item.points > 0 ? '+' : ''}}{{item.points}}
+          </text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty" wx:if="{{logList.length == 0 && !loading}}">
+      <view class="empty-icon">
+        <text class="iconfont icon-star"></text>
+      </view>
+      <text class="empty-text">暂无积分记录</text>
+    </view>
+
+    <view class="load-more" wx:if="{{logList.length > 0}}">
+      <text class="load-text" wx:if="{{loading}}">加载中...</text>
+      <text class="load-text" wx:elif="{{noMore}}">没有更多了</text>
+      <text class="load-text" wx:else bindtap="loadMore">上拉加载更多</text>
+    </view>
+  </view>
+</view>

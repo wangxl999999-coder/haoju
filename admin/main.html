@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好句好段 - 管理后台</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="icon icon-book"></span>
+                <h1>好句好段</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <span class="icon icon-home"></span>
+                    <span>首页</span>
+                </a>
+                <a href="#" class="nav-item" data-page="users">
+                    <span class="icon icon-users"></span>
+                    <span>用户管理</span>
+                </a>
+                <a href="#" class="nav-item" data-page="contents">
+                    <span class="icon icon-file-text"></span>
+                    <span>内容管理</span>
+                </a>
+                <a href="#" class="nav-item" data-page="categories">
+                    <span class="icon icon-category"></span>
+                    <span>分类管理</span>
+                </a>
+                <a href="#" class="nav-item" data-page="invites">
+                    <span class="icon icon-share"></span>
+                    <span>邀请关系</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <span class="icon icon-menu"></span>
+                    </button>
+                    <span class="page-title" id="pageTitle">首页</span>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="icon icon-user-circle"></span>
+                        <span id="adminName">管理员</span>
+                        <div class="user-dropdown">
+                            <button class="logout-btn" id="logoutBtn">
+                                <span class="icon icon-logout"></span>
+                                退出登录
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper" id="contentWrapper">
+                <div class="page-content active" id="dashboardPage">
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <span class="icon icon-users"></span>
+                            </div>
+                            <div class="stat-info">
+                                <p class="stat-value" id="totalUsers">0</p>
+                                <p class="stat-label">用户总数</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon blue">
+                                <span class="icon icon-file-text"></span>
+                            </div>
+                            <div class="stat-info">
+                                <p class="stat-value" id="totalContents">0</p>
+                                <p class="stat-label">内容总数</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange">
+                                <span class="icon icon-clock"></span>
+                            </div>
+                            <div class="stat-info">
+                                <p class="stat-value" id="pendingContents">0</p>
+                                <p class="stat-label">待审核内容</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">
+                                <span class="icon icon-share"></span>
+                            </div>
+                            <div class="stat-info">
+                                <p class="stat-value" id="totalInvites">0</p>
+                                <p class="stat-label">邀请关系</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-section">
+                        <div class="chart-card">
+                            <h3>最近注册用户</h3>
+                            <div class="recent-list" id="recentUsers">
+                                <p class="empty-text">暂无数据</p>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <h3>待审核内容</h3>
+                            <div class="recent-list" id="pendingList">
+                                <p class="empty-text">暂无数据</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-content" id="usersPage">
+                    <div class="page-header">
+                        <h2>用户管理</h2>
+                        <div class="search-box">
+                            <input type="text" id="userSearchInput" placeholder="搜索手机号或昵称">
+                            <button class="btn btn-primary" id="userSearchBtn">搜索</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>手机号</th>
+                                    <th>昵称</th>
+                                    <th>积分</th>
+                                    <th>邀请人</th>
+                                    <th>收藏数</th>
+                                    <th>发布数</th>
+                                    <th>注册时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <tr>
+                                    <td colspan="9" class="text-center">加载中...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-container" id="usersPagination"></div>
+                </div>
+
+                <div class="page-content" id="contentsPage">
+                    <div class="page-header">
+                        <h2>内容管理</h2>
+                        <div class="filter-box">
+                            <select id="contentCategoryFilter">
+                                <option value="">全部分类</option>
+                            </select>
+                            <select id="contentStatusFilter">
+                                <option value="">全部状态</option>
+                                <option value="0">待审核</option>
+                                <option value="1">已通过</option>
+                                <option value="2">已拒绝</option>
+                            </select>
+                            <input type="text" id="contentSearchInput" placeholder="搜索内容">
+                            <button class="btn btn-primary" id="contentSearchBtn">搜索</button>
+                            <button class="btn btn-primary" id="addContentBtn">
+                                <span class="icon icon-plus"></span> 添加内容
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>分类</th>
+                                    <th>内容预览</th>
+                                    <th>作者</th>
+                                    <th>发布用户</th>
+                                    <th>状态</th>
+                                    <th>浏览</th>
+                                    <th>收藏</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contentsTableBody">
+                                <tr>
+                                    <td colspan="10" class="text-center">加载中...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-container" id="contentsPagination"></div>
+                </div>
+
+                <div class="page-content" id="categoriesPage">
+                    <div class="page-header">
+                        <h2>分类管理</h2>
+                        <button class="btn btn-primary" id="addCategoryBtn">
+                            <span class="icon icon-plus"></span> 添加分类
+                        </button>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>分类名称</th>
+                                    <th>排序</th>
+                                    <th>状态</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="categoriesTableBody">
+                                <tr>
+                                    <td colspan="6" class="text-center">加载中...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="page-content" id="invitesPage">
+                    <div class="page-header">
+                        <h2>邀请关系</h2>
+                        <div class="search-box">
+                            <input type="text" id="inviteSearchInput" placeholder="搜索邀请人或被邀请人">
+                            <button class="btn btn-primary" id="inviteSearchBtn">搜索</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>邀请人</th>
+                                    <th>邀请人手机号</th>
+                                    <th>被邀请人</th>
+                                    <th>被邀请人手机号</th>
+                                    <th>奖励状态</th>
+                                    <th>创建时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invitesTableBody">
+                                <tr>
+                                    <td colspan="7" class="text-center">加载中...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-container" id="invitesPagination"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal" id="contentModal">
+        <div class="modal-mask"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="contentModalTitle">添加内容</h3>
+                <button class="modal-close" id="contentModalClose">
+                    <span class="icon icon-close"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contentForm">
+                    <input type="hidden" id="contentFormId">
+                    <div class="form-group">
+                        <label>分类 <span class="required">*</span></label>
+                        <select id="contentFormCategory" required>
+                            <option value="">请选择分类</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>标题</label>
+                        <input type="text" id="contentFormTitle" placeholder="请输入标题">
+                    </div>
+                    <div class="form-group">
+                        <label>内容 <span class="required">*</span></label>
+                        <textarea id="contentFormContent" placeholder="请输入内容" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>作者/来源</label>
+                        <input type="text" id="contentFormAuthor" placeholder="请输入作者或来源">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" id="contentModalCancel">取消</button>
+                <button class="btn btn-primary" id="contentModalSave">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="categoryModal">
+        <div class="modal-mask"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="categoryModalTitle">添加分类</h3>
+                <button class="modal-close" id="categoryModalClose">
+                    <span class="icon icon-close"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="categoryForm">
+                    <input type="hidden" id="categoryFormId">
+                    <div class="form-group">
+                        <label>分类名称 <span class="required">*</span></label>
+                        <input type="text" id="categoryFormName" placeholder="请输入分类名称" required>
+                    </div>
+                    <div class="form-group">
+                        <label>排序</label>
+                        <input type="number" id="categoryFormSort" placeholder="数字越小越靠前" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label>状态</label>
+                        <select id="categoryFormStatus">
+                            <option value="1">启用</option>
+                            <option value="0">禁用</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" id="categoryModalCancel">取消</button>
+                <button class="btn btn-primary" id="categoryModalSave">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="detailModal">
+        <div class="modal-mask"></div>
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>内容详情</h3>
+                <button class="modal-close" id="detailModalClose">
+                    <span class="icon icon-close"></span>
+                </button>
+            </div>
+            <div class="modal-body" id="detailModalBody">
+            </div>
+            <div class="modal-footer" id="detailModalFooter">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

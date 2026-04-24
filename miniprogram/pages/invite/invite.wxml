@@ -1,0 +1,102 @@
+<view class="page">
+  <view class="header-section">
+    <view class="bg-pattern"></view>
+    <view class="header-content">
+      <view class="title">邀请好友</view>
+      <view class="subtitle">邀请好友一起发现好句好段</view>
+      <view class="reward-card">
+        <view class="reward-item">
+          <view class="reward-icon">
+            <text class="iconfont icon-gift"></text>
+          </view>
+          <view class="reward-info">
+            <text class="reward-points">+1积分</text>
+            <text class="reward-text">邀请人奖励</text>
+          </view>
+        </view>
+        <view class="reward-divider"></view>
+        <view class="reward-item">
+          <view class="reward-icon">
+            <text class="iconfont icon-gift"></text>
+          </view>
+          <view class="reward-info">
+            <text class="reward-points">+1积分</text>
+            <text class="reward-text">被邀请人奖励</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="stats-section">
+    <view class="stat-card">
+      <view class="stat-value">{{inviteCount}}</view>
+      <view class="stat-label">成功邀请</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-value">{{earnedPoints}}</view>
+      <view class="stat-label">获得积分</view>
+    </view>
+  </view>
+
+  <view class="invite-section">
+    <view class="section-header">
+      <text class="section-title">分享给好友</text>
+    </view>
+    <view class="invite-ways">
+      <button class="way-item" open-type="share">
+        <view class="way-icon">
+          <text class="iconfont icon-share"></text>
+        </view>
+        <text class="way-text">分享给微信好友</text>
+      </button>
+      <view class="way-item" bindtap="copyInviteCode">
+        <view class="way-icon">
+          <text class="iconfont icon-copy"></text>
+        </view>
+        <text class="way-text">复制邀请码</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="list-section" wx:if="{{inviteList.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">邀请记录</text>
+    </view>
+    <view class="invite-list">
+      <view class="invite-item" wx:for="{{inviteList}}" wx:key="id">
+        <view class="invite-left">
+          <view class="invite-avatar">
+            <image wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="aspectFill"></image>
+            <view wx:else class="avatar-placeholder">
+              <text class="iconfont icon-user"></text>
+            </view>
+          </view>
+          <view class="invite-info">
+            <text class="invite-name">{{item.nickname}}</text>
+            <text class="invite-phone">{{item.phone}}</text>
+          </view>
+        </view>
+        <view class="invite-right">
+          <view class="reward-status {{item.reward_given ? 'given' : 'pending'}}">
+            <text wx:if="{{item.reward_given}}">+1积分</text>
+            <text wx:else>待注册</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="load-more" wx:if="{{inviteList.length > 0}}">
+      <text class="load-text" wx:if="{{loading}}">加载中...</text>
+      <text class="load-text" wx:elif="{{noMore}}">没有更多了</text>
+      <text class="load-text" wx:else bindtap="loadMore">上拉加载更多</text>
+    </view>
+  </view>
+
+  <view class="empty-section" wx:if="{{inviteList.length == 0 && !loading}}">
+    <view class="empty-icon">
+      <text class="iconfont icon-share"></text>
+    </view>
+    <text class="empty-text">快去邀请好友吧</text>
+  </view>
+</view>
