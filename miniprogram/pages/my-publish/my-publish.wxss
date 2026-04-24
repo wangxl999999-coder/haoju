@@ -1,0 +1,143 @@
+.page {
+  min-height: 100vh;
+  background-color: #F5F7FA;
+  padding-bottom: 30rpx;
+}
+
+.content-list {
+  padding: 20rpx 30rpx;
+}
+
+.content-item {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.content-item.pending {
+  border-left: 6rpx solid #FFA500;
+}
+
+.content-item.rejected {
+  border-left: 6rpx solid #FF4D4F;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.status-badge {
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+}
+
+.status-badge.pending {
+  background-color: #FFF7E6;
+  color: #FFA500;
+}
+
+.status-badge.approved {
+  background-color: #F6FFED;
+  color: #52C41A;
+}
+
+.status-badge.rejected {
+  background-color: #FFF1F0;
+  color: #FF4D4F;
+}
+
+.content-text {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 1.8;
+  margin-bottom: 20rpx;
+}
+
+.content-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #F0F0F0;
+}
+
+.content-footer .stats {
+  display: flex;
+  align-items: center;
+}
+
+.content-footer .stat-item {
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
+}
+
+.content-footer .stat-item .iconfont {
+  font-size: 28rpx;
+  color: #999999;
+  margin-right: 8rpx;
+}
+
+.content-footer .stat-item .stat-text {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.publish-time {
+  font-size: 24rpx;
+  color: #CCCCCC;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 150rpx 0;
+}
+
+.empty-icon {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #F0F0F0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+
+.empty-icon .iconfont {
+  font-size: 80rpx;
+  color: #CCCCCC;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 30rpx;
+}
+
+.empty .btn {
+  border: none;
+}
+
+.empty .btn::after {
+  border: none;
+}
+
+.load-more {
+  text-align: center;
+  padding: 30rpx 0;
+}
+
+.load-more .load-text {
+  font-size: 26rpx;
+  color: #999999;
+}

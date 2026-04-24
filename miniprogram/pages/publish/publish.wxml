@@ -1,0 +1,87 @@
+<view class="page">
+  <view class="form-section">
+    <view class="form-item">
+      <view class="form-label">
+        <text class="required">*</text>
+        <text>选择分类</text>
+      </view>
+      <picker mode="selector" range="{{categories}}" range-key="name" bindchange="onCategoryChange">
+        <view class="picker-wrap">
+          <text class="{{selectedCategory ? '' : 'placeholder'}}">{{selectedCategory ? selectedCategory.name : '请选择分类'}}</text>
+          <text class="iconfont icon-arrow-down"></text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text>标题</text>
+        <text class="tip">（选填）</text>
+      </view>
+      <input 
+        class="form-input" 
+        placeholder="请输入标题" 
+        maxlength="100"
+        value="{{title}}"
+        bindinput="onTitleInput"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="required">*</text>
+        <text>内容</text>
+      </view>
+      <textarea 
+        class="form-textarea" 
+        placeholder="请输入内容（至少10个字符）" 
+        maxlength="5000"
+        value="{{content}}"
+        bindinput="onContentInput"
+        show-confirm-bar="{{false}}"
+      />
+      <view class="word-count">
+        <text class="{{contentLength < 10 ? 'error' : ''}}">{{contentLength}}</text>
+        <text>/5000</text>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text>作者/来源</text>
+        <text class="tip">（选填）</text>
+      </view>
+      <input 
+        class="form-input" 
+        placeholder="请输入作者或来源" 
+        maxlength="50"
+        value="{{author}}"
+        bindinput="onAuthorInput"
+      />
+    </view>
+  </view>
+
+  <view class="tips-section">
+    <view class="tips-title">温馨提示</view>
+    <view class="tips-list">
+      <view class="tips-item">
+        <text class="iconfont icon-check-circle"></text>
+        <text class="tips-text">发布内容审核通过后可获得1积分奖励</text>
+      </view>
+      <view class="tips-item">
+        <text class="iconfont icon-check-circle"></text>
+        <text class="tips-text">请确保内容原创，抄袭将被拒绝</text>
+      </view>
+      <view class="tips-item">
+        <text class="iconfont icon-check-circle"></text>
+        <text class="tips-text">内容需积极向上，符合法律法规</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="btn-section">
+    <button class="btn btn-primary btn-block" bindtap="handlePublish" loading="{{loading}}">
+      发布内容
+    </button>
+  </view>
+</view>

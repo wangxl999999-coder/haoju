@@ -1,0 +1,47 @@
+<view class="page">
+  <view class="content-list" wx:if="{{contentList.length > 0}}">
+    <view 
+      class="content-item" 
+      wx:for="{{contentList}}" 
+      wx:key="id"
+      bindtap="goDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="content-header">
+        <text class="tag tag-primary">{{item.category_name}}</text>
+        <text class="author" wx:if="{{item.author}}">{{item.author}}</text>
+      </view>
+      <view class="content-text ellipsis-3">{{item.content}}</view>
+      <view class="content-footer">
+        <view class="stats">
+          <view class="stat-item">
+            <text class="iconfont icon-view"></text>
+            <text class="stat-text">{{item.view_count}}</text>
+          </view>
+          <view class="stat-item">
+            <text class="iconfont icon-heart-fill"></text>
+            <text class="stat-text">{{item.favorite_count}}</text>
+          </view>
+        </view>
+        <view class="favorite-btn" catchtap="toggleFavorite" data-id="{{item.id}}" data-index="{{index}}">
+          <text class="iconfont icon-heart-fill"></text>
+          <text class="btn-text">取消收藏</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{contentList.length == 0 && !loading}}">
+    <view class="empty-icon">
+      <text class="iconfont icon-heart"></text>
+    </view>
+    <text class="empty-text">暂无收藏内容</text>
+    <button class="btn btn-primary btn-small" bindtap="goExplore">去发现好句</button>
+  </view>
+
+  <view class="load-more" wx:if="{{contentList.length > 0}}">
+    <text class="load-text" wx:if="{{loading}}">加载中...</text>
+    <text class="load-text" wx:elif="{{noMore}}">没有更多了</text>
+    <text class="load-text" wx:else bindtap="loadMore">上拉加载更多</text>
+  </view>
+</view>

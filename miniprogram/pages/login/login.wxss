@@ -1,0 +1,154 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #FF6B6B 0%, #FFF5F5 50%, #FFFFFF 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100rpx 0 80rpx;
+}
+
+.logo {
+  width: 160rpx;
+  height: 160rpx;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFF0F0 100%);
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 32rpx rgba(255, 107, 107, 0.2);
+  margin-bottom: 30rpx;
+}
+
+.logo .iconfont {
+  font-size: 80rpx;
+  color: #FF6B6B;
+}
+
+.header .title {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 16rpx;
+}
+
+.header .subtitle {
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.form-section {
+  flex: 1;
+  padding: 0 40rpx;
+}
+
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 28rpx 30rpx;
+  border: 2rpx solid #F0F0F0;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.02);
+}
+
+.input-wrap .prefix-icon {
+  font-size: 36rpx;
+  color: #FF6B6B;
+  margin-right: 20rpx;
+}
+
+.input-wrap .input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.code-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.code-wrap .code-input {
+  flex: 1;
+}
+
+.code-btn {
+  padding: 16rpx 30rpx;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  color: #FFFFFF;
+  margin-left: 20rpx;
+  white-space: nowrap;
+}
+
+.code-btn.disabled {
+  background: #CCCCCC;
+}
+
+.invite-item {
+  padding: 20rpx 30rpx;
+  background-color: rgba(255, 107, 107, 0.05);
+  border-radius: 12rpx;
+  margin-bottom: 30rpx;
+}
+
+.invite-label {
+  font-size: 26rpx;
+  color: #FF6B6B;
+}
+
+.btn-section {
+  margin-top: 40rpx;
+}
+
+.btn-section .btn {
+  border: none;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 107, 0.3);
+}
+
+.btn-section .btn::after {
+  border: none;
+}
+
+.agreement {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 30rpx;
+  padding: 0 10rpx;
+}
+
+.agreement-checkbox {
+  margin-right: 16rpx;
+  margin-top: 4rpx;
+}
+
+.agreement-text {
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.agreement-text .link {
+  color: #FF6B6B;
+}
+
+.footer {
+  padding: 40rpx;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: #CCCCCC;
+}

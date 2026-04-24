@@ -1,0 +1,323 @@
+.page {
+  min-height: 100vh;
+  background-color: #F5F7FA;
+  padding-bottom: 30rpx;
+}
+
+.header-section {
+  position: relative;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+  padding: 40rpx 30rpx 60rpx;
+  overflow: hidden;
+}
+
+.bg-pattern {
+  position: absolute;
+  top: -100rpx;
+  right: -100rpx;
+  width: 400rpx;
+  height: 400rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.bg-pattern::after {
+  content: '';
+  position: absolute;
+  bottom: -50rpx;
+  left: -50rpx;
+  width: 200rpx;
+  height: 200rpx;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.header-content .title {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 10rpx;
+}
+
+.header-content .subtitle {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40rpx;
+}
+
+.reward-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20rpx;
+  padding: 30rpx;
+}
+
+.reward-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.reward-icon {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.reward-icon .iconfont {
+  font-size: 40rpx;
+  color: #FFFFFF;
+}
+
+.reward-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reward-points {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 6rpx;
+}
+
+.reward-text {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.reward-divider {
+  width: 2rpx;
+  height: 100rpx;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 0 40rpx;
+}
+
+.stats-section {
+  display: flex;
+  margin: -30rpx 30rpx 20rpx;
+  position: relative;
+  z-index: 10;
+}
+
+.stat-card {
+  flex: 1;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 16rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.stat-card:last-child {
+  margin-right: 0;
+}
+
+.stat-card .stat-value {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #FF6B6B;
+  margin-bottom: 8rpx;
+}
+
+.stat-card .stat-label {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.invite-section,
+.list-section {
+  background-color: #FFFFFF;
+  margin: 20rpx 30rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.section-header {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.invite-ways {
+  display: flex;
+  padding: 30rpx;
+}
+
+.way-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  line-height: normal;
+}
+
+.way-item::after {
+  border: none;
+}
+
+.way-icon {
+  width: 96rpx;
+  height: 96rpx;
+  background: linear-gradient(135deg, #FFE5E5 0%, #FFF0F0 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.way-icon .iconfont {
+  font-size: 48rpx;
+  color: #FF6B6B;
+}
+
+.way-text {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.invite-list {
+  padding: 0 30rpx;
+}
+
+.invite-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.invite-item:last-child {
+  border-bottom: none;
+}
+
+.invite-left {
+  display: flex;
+  align-items: center;
+}
+
+.invite-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #F0F0F0;
+  margin-right: 20rpx;
+}
+
+.invite-avatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-placeholder .iconfont {
+  font-size: 40rpx;
+  color: #CCCCCC;
+}
+
+.invite-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.invite-name {
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.invite-phone {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.reward-status {
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.reward-status.given {
+  background-color: #F6FFED;
+  color: #52C41A;
+}
+
+.reward-status.pending {
+  background-color: #FFF7E6;
+  color: #FFA500;
+}
+
+.empty-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+}
+
+.empty-icon {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #F0F0F0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+
+.empty-icon .iconfont {
+  font-size: 80rpx;
+  color: #CCCCCC;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.load-more {
+  text-align: center;
+  padding: 30rpx 0;
+}
+
+.load-more .load-text {
+  font-size: 26rpx;
+  color: #999999;
+}
