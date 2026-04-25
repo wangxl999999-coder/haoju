@@ -7,7 +7,7 @@ return [
     'port' => 3306,
     'dbname' => 'haoju',
     'username' => 'root',
-    'password' => '',
+    'password' => '123123',
     'charset' => 'utf8mb4',
     'options' => [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
