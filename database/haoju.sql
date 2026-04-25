@@ -1,4 +1,9 @@
 -- 好句好段小程序数据库结构
+-- 兼容MySQL 5.5+ 版本
+-- 设置SQL模式，避免严格模式导致的默认值错误
+SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';
+SET time_zone = '+00:00';
+
 -- 创建数据库
 CREATE DATABASE IF NOT EXISTS `haoju` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -14,8 +19,8 @@ CREATE TABLE IF NOT EXISTS `users` (
     `openid` varchar(100) DEFAULT NULL COMMENT '微信openid',
     `unionid` varchar(100) DEFAULT NULL COMMENT '微信unionid',
     `inviter_id` int(11) DEFAULT NULL COMMENT '邀请人ID',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `phone` (`phone`),
     KEY `openid` (`openid`),
@@ -29,8 +34,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
     `icon` varchar(255) DEFAULT NULL COMMENT '分类图标',
     `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
     `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态：0禁用，1启用',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='分类表';
 
@@ -53,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `contents` (
     `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态：0待审核，1已通过，2已拒绝',
     `view_count` int(11) NOT NULL DEFAULT '0' COMMENT '浏览次数',
     `favorite_count` int(11) NOT NULL DEFAULT '0' COMMENT '收藏次数',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),
     KEY `category_id` (`category_id`),
     KEY `user_id` (`user_id`),
@@ -67,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `favorites` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `user_id` int(11) NOT NULL COMMENT '用户ID',
     `content_id` int(11) NOT NULL COMMENT '内容ID',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `user_content` (`user_id`, `content_id`),
     KEY `user_id` (`user_id`),
@@ -83,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `points_log` (
     `type` varchar(50) NOT NULL COMMENT '类型：publish发布奖励，invite邀请奖励，invited被邀请奖励',
     `related_id` int(11) DEFAULT NULL COMMENT '关联ID',
     `description` varchar(255) DEFAULT NULL COMMENT '描述',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`),
     KEY `user_id` (`user_id`),
     KEY `type` (`type`),
@@ -96,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `invites` (
     `inviter_id` int(11) NOT NULL COMMENT '邀请人ID',
     `invitee_id` int(11) NOT NULL COMMENT '被邀请人ID',
     `reward_given` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否已发放奖励',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `invitee_id` (`invitee_id`),
     KEY `inviter_id` (`inviter_id`)
@@ -107,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `daily_recommendations` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `date` date NOT NULL COMMENT '日期',
     `content_id` int(11) NOT NULL COMMENT '内容ID',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `date` (`date`),
     KEY `content_id` (`content_id`)
@@ -118,9 +123,9 @@ CREATE TABLE IF NOT EXISTS `sms_codes` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `phone` varchar(20) NOT NULL COMMENT '手机号',
     `code` varchar(10) NOT NULL COMMENT '验证码',
-    `expire_at` datetime NOT NULL COMMENT '过期时间',
+    `expire_at` timestamp NOT NULL COMMENT '过期时间',
     `used` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否已使用',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`),
     KEY `phone` (`phone`),
     KEY `created_at` (`created_at`)
@@ -133,9 +138,9 @@ CREATE TABLE IF NOT EXISTS `admins` (
     `password` varchar(255) NOT NULL COMMENT '密码（加密）',
     `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
     `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态：0禁用，1启用',
-    `last_login_at` datetime DEFAULT NULL COMMENT '最后登录时间',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `last_login_at` timestamp NULL DEFAULT NULL COMMENT '最后登录时间',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='管理员表';
