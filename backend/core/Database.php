@@ -65,6 +65,14 @@ class Database
     
     public function insert($table, $data)
     {
+        $now = date('Y-m-d H:i:s');
+        if (!isset($data['created_at'])) {
+            $data['created_at'] = $now;
+        }
+        if (!isset($data['updated_at'])) {
+            $data['updated_at'] = $now;
+        }
+        
         $fields = array_keys($data);
         $placeholders = array_map(function ($field) {
             return ":$field";
@@ -83,6 +91,10 @@ class Database
     
     public function update($table, $data, $where, $whereParams = [])
     {
+        if (!isset($data['updated_at'])) {
+            $data['updated_at'] = date('Y-m-d H:i:s');
+        }
+        
         $fields = array_keys($data);
         $setParts = array_map(function ($field) {
             return "`$field` = :$field";
